@@ -1,10 +1,16 @@
-package com.clinica.dao;
+package dao.impl;
 
-import com.clinica.dao.impl.OdontologoDAOH2Impl;
+import dao.OdontologoDAO;
+import dao.impl.OdontologoDAOH2Impl;
 import com.clinica.model.Odontologo;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
+
 import static org.junit.Assert.*;
 
 public class OdontologoDAOH2ImplTest {
@@ -13,20 +19,23 @@ public class OdontologoDAOH2ImplTest {
     @Before
     public void setUp() {
         odontologoDAO = new OdontologoDAOH2Impl();
+        try (Connection connection = DatabaseConnection.getConnection();
+             Statement statement = connection.createStatement()) {
+            statement.execute("DELETE FROM odontologos");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Test
     public void testListarOdontologos() {
-        // Guardar algunos odontólogos de prueba
         Odontologo odontologo1 = new Odontologo(1, "Juan", "Pérez");
         Odontologo odontologo2 = new Odontologo(2, "María", "López");
         odontologoDAO.guardarOdontologo(odontologo1);
         odontologoDAO.guardarOdontologo(odontologo2);
 
-        // Listar odontólogos
         List<Odontologo> odontologos = odontologoDAO.listarOdontologos();
 
-        // Verificaciones
         assertFalse(odontologos.isEmpty());
         assertTrue(odontologos.size() >= 2);
 

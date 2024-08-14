@@ -1,7 +1,7 @@
 package com.clinica.service;
 
-import com.clinica.dao.OdontologoDAO;
-import com.clinica.model.Odontologo;
+import dao.OdontologoDAO;
+import model.Odontologo;
 import java.util.List;
 
 public class OdontologoService {

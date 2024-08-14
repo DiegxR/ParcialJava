@@ -1,6 +1,6 @@
-package com.clinica.dao;
+package dao;
 
-import com.clinica.model.Odontologo;
+import model.Odontologo;
 import java.util.List;
 
 public interface OdontologoDAO {

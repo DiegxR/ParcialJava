@@ -1,8 +1,8 @@
-package com.clinica.dao.impl;
+package dao.impl;
 
-import com.clinica.dao.OdontologoDAO;
-import com.clinica.model.Odontologo;
-import com.clinica.db.DatabaseConnection;
+import dao.OdontologoDAO;
+
+import db.DatabaseConnection;
 import org.apache.log4j.Logger;
 
 import java.sql.*;
@@ -13,7 +13,7 @@ public class OdontologoDAOH2Impl implements OdontologoDAO {
     private static final Logger logger = Logger.getLogger(OdontologoDAOH2Impl.class);
 
     @Override
-    public void guardarOdontologo(Odontologo odontologo) {
+    public void guardarOdontologo(model.Odontologo odontologo) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
